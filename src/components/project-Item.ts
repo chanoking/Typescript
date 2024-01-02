@@ -1,46 +1,45 @@
-namespace App {
-  // ProjectItem Class
-  export class ProjectItem
-    extends Component<HTMLUListElement, HTMLLIElement>
-    implements Draggable
-  {
-    private project: Project;
+import { draggable } from "../model/drag-drop.js";
 
-    get persons() {
-      if (this.project.people === 1) {
-        return "1 person";
-      } else {
-        return `${this.project.people} people`;
-      }
-    }
+// ProjectItem Class
+export class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable
+{
+  private project: Project;
 
-    constructor(hostId: string, project: Project) {
-      super("single-project", hostId, false, project.id);
-      this.project = project;
+  get persons() {
+    if (this.project.people === 1) {
+      return "1 person";
+    } else {
+      return `${this.project.people} people`;
+    }
+  }
 
-      this.configure();
-      this.renderContent();
-    }
+  constructor(hostId: string, project: Project) {
+    super("single-project", hostId, false, project.id);
+    this.project = project;
 
-    @autobind
-    dragStartHandler(event: DragEvent): void {
-      event.dataTransfer!.setData("text/plain", this.project.id);
-      event.dataTransfer!.effectAllowed = "move";
-    }
+    this.configure();
+    this.renderContent();
+  }
 
-    dragEndHandler(event: DragEvent): void {
-      console.log("DragEnd");
-    }
+  @autobind
+  dragStartHandler(event: DragEvent): void {
+    event.dataTransfer!.setData("text/plain", this.project.id);
+    event.dataTransfer!.effectAllowed = "move";
+  }
 
-    configure(): void {
-      this.element.addEventListener("dragstart", this.dragStartHandler);
-      this.element.addEventListener("dragend", this.dragEndHandler);
-    }
-    renderContent(): void {
-      this.element.querySelector("h2")!.textContent = this.project.title;
-      this.element.querySelector("h3")!.textContent =
-        this.persons + " assigned";
-      this.element.querySelector("p")!.textContent = this.project.description;
-    }
+  dragEndHandler(event: DragEvent): void {
+    console.log("DragEnd");
+  }
+
+  configure(): void {
+    this.element.addEventListener("dragstart", this.dragStartHandler);
+    this.element.addEventListener("dragend", this.dragEndHandler);
+  }
+  renderContent(): void {
+    this.element.querySelector("h2")!.textContent = this.project.title;
+    this.element.querySelector("h3")!.textContent = this.persons + " assigned";
+    this.element.querySelector("p")!.textContent = this.project.description;
   }
 }

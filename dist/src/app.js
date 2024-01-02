@@ -10,7 +10,7 @@
 /// <reference path="./components/project-Input.ts" />
 var App;
 (function (App) {
-    new App.ProjectInput();
-    new App.ProjectList("active");
-    new App.ProjectList("finished");
+    new ProjectInput();
+    new ProjectList("active");
+    new ProjectList("finished");
 })(App || (App = {}));
