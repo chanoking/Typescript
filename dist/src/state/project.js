@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.projectState = exports.ProjectState = void 0;
+const project_1 = require("../model/project");
 class State {
     constructor() {
         this.listeners = [];
@@ -22,7 +23,7 @@ class ProjectState extends State {
         return this.instance;
     }
     addProject(title, description, numOfPeople) {
-        const newProject = new Project(Math.random().toString(), title, description, numOfPeople, ProjectStatus.Active);
+        const newProject = new project_1.Project(Math.random().toString(), title, description, numOfPeople, project_1.ProjectStatus.Active);
         this.projects.push(newProject);
         this.updateListeners();
     }

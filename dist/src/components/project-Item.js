@@ -7,8 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectItem = void 0;
+const autobind_js_1 = require("../decorators/autobind.js");
+const component_Base_js_1 = require("./component-Base.js");
 // ProjectItem Class
-class ProjectItem extends Component {
+class ProjectItem extends component_Base_js_1.Component {
     get persons() {
         if (this.project.people === 1) {
             return "1 person";
@@ -42,5 +44,5 @@ class ProjectItem extends Component {
 }
 exports.ProjectItem = ProjectItem;
 __decorate([
-    autobind
+    autobind_js_1.autobind
 ], ProjectItem.prototype, "dragStartHandler", null);

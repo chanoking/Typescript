@@ -7,8 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectList = void 0;
+const autobind_1 = require("../decorators/autobind");
+const project_1 = require("../model/project");
+const project_2 = require("../state/project");
+const component_Base_1 = require("./component-Base");
+const project_Item_1 = require("./project-Item");
 // ProjectList Class
-class ProjectList extends Component {
+class ProjectList extends component_Base_1.Component {
     constructor(type) {
         super("project-list", "app", false, `${type}-projects`);
         this.type = type;
@@ -25,7 +30,7 @@ class ProjectList extends Component {
     }
     dropHandler(event) {
         const prjId = event.dataTransfer.getData("text/plain");
-        projectState.moveProject(prjId, this.type === "active" ? ProjectStatus.Active : ProjectStatus.Finished);
+        project_2.projectState.moveProject(prjId, this.type === "active" ? project_1.ProjectStatus.Active : project_1.ProjectStatus.Finished);
     }
     dragLeaveHandler(event) {
         const listEl = this.element.querySelector("ul");
@@ -35,12 +40,12 @@ class ProjectList extends Component {
         this.element.addEventListener("dragover", this.dragOverHandler);
         this.element.addEventListener("dragleave", this.dragLeaveHandler);
         this.element.addEventListener("drop", this.dropHandler);
-        projectState.addListener((projects) => {
+        project_2.projectState.addListener((projects) => {
             const relevantProjects = projects.filter((prj) => {
                 if (this.type === "active") {
-                    return prj.status === ProjectStatus.Active;
+                    return prj.status === project_1.ProjectStatus.Active;
                 }
-                return prj.status === ProjectStatus.Finished;
+                return prj.status === project_1.ProjectStatus.Finished;
             });
             this.assignedProjects = relevantProjects;
             this.renderProjects();
@@ -56,17 +61,17 @@ class ProjectList extends Component {
         const listEl = document.getElementById(`${this.type}-projects-list`);
         listEl.innerHTML = "";
         for (const prjItem of this.assignedProjects) {
-            new ProjectItem(this.element.querySelector("ul").id, prjItem);
+            new project_Item_1.ProjectItem(this.element.querySelector("ul").id, prjItem);
         }
     }
 }
 exports.ProjectList = ProjectList;
 __decorate([
-    autobind
+    autobind_1.autobind
 ], ProjectList.prototype, "dragOverHandler", null);
 __decorate([
-    autobind
+    autobind_1.autobind
 ], ProjectList.prototype, "dropHandler", null);
 __decorate([
-    autobind
+    autobind_1.autobind
 ], ProjectList.prototype, "dragLeaveHandler", null);

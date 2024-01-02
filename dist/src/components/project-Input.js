@@ -7,8 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectInput = void 0;
+const autobind_1 = require("../decorators/autobind");
+const project_1 = require("../state/project");
+const validation_1 = require("../util/validation");
+const component_Base_1 = require("./component-Base");
 // ProjectInput Class
-class ProjectInput extends Component {
+class ProjectInput extends component_Base_1.Component {
     constructor() {
         super("project-input", "app", true, "user-input");
         this.titleInputElement = this.element.querySelector("#title");
@@ -39,9 +43,9 @@ class ProjectInput extends Component {
             min: 1,
             max: 5,
         };
-        if (!validate(titleValidatable) ||
-            !validate(descriptionValidatable) ||
-            !validate(peopleValidatable)) {
+        if (!(0, validation_1.validate)(titleValidatable) ||
+            !(0, validation_1.validate)(descriptionValidatable) ||
+            !(0, validation_1.validate)(peopleValidatable)) {
             alert("Invalid input, please try again");
             return;
         }
@@ -59,12 +63,12 @@ class ProjectInput extends Component {
         const userInput = this.gatherUserInput();
         if (Array.isArray(userInput)) {
             const [title, desc, people] = userInput;
-            projectState.addProject(title, desc, people);
+            project_1.projectState.addProject(title, desc, people);
             this.clearInputs();
         }
     }
 }
 exports.ProjectInput = ProjectInput;
 __decorate([
-    autobind
+    autobind_1.autobind
 ], ProjectInput.prototype, "submitHandler", null);

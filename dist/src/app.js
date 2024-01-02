@@ -1,16 +1,10 @@
 "use strict";
-/// <reference path="./decorators/autobind.ts" />
-/// <reference path="./model/project.ts" />
-/// <reference path="./model/drag-drop.ts" />
-/// <reference path="./state/project.ts" />
-/// <reference path="./util/validation.ts" />
-/// <reference path="./components/component-Base.ts" />
-/// <reference path="./components/project-Item.ts" />
-/// <reference path="./components/project-List.ts" />
-/// <reference path="./components/project-Input.ts" />
+Object.defineProperty(exports, "__esModule", { value: true });
+const project_Input_1 = require("./components/project-Input");
+const project_List_1 = require("./components/project-List");
 var App;
 (function (App) {
-    new ProjectInput();
-    new ProjectList("active");
-    new ProjectList("finished");
+    new project_Input_1.ProjectInput();
+    new project_List_1.ProjectList("active");
+    new project_List_1.ProjectList("finished");
 })(App || (App = {}));

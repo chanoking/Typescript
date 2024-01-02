@@ -1,12 +1,5 @@
-/// <reference path="./decorators/autobind.ts" />
-/// <reference path="./model/project.ts" />
-/// <reference path="./model/drag-drop.ts" />
-/// <reference path="./state/project.ts" />
-/// <reference path="./util/validation.ts" />
-/// <reference path="./components/component-Base.ts" />
-/// <reference path="./components/project-Item.ts" />
-/// <reference path="./components/project-List.ts" />
-/// <reference path="./components/project-Input.ts" />
+import { ProjectInput } from "./components/project-Input";
+import { ProjectList } from "./components/project-List";
 
 namespace App {
   new ProjectInput();
